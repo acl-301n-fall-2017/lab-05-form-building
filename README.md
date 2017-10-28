@@ -16,7 +16,7 @@ When you are finished with lab, follow these steps to submit your work. Create o
 ---
 
 ## Resources  
-[HighlightJS Docs](https://highlightjs.org/)
+[HighlightJS Docs](https://highlightjs.org/) | 
 [MarkedJS Docs](https://github.com/chjj/marked)
 
 ---
