@@ -34,6 +34,23 @@
 
       <section id="write" class="tab-content">
         <h1>Create New Article</h1>
+        <form name="new-article" id="newArticle">
+          <fieldset>
+            <label for="title">Title:</label>
+            <input name="title" id="title" type="text">
+            <label for="body">Body:</label>
+            <input name="body" id="body" type="text">
+            <label for="articleAuthor">Article Author:</label>
+            <input name="article-author" id="articleAuthor" type="text">
+            <label for="authorUrl">Author's URL</label>
+            <input name="author-url" id="authorUrl" type="text">
+            <label for="articleCategory">Article Category:</label>
+            <input name="article-category" id="articleCategory" type="text">
+            <label>Status</label>
+            <input type="radio" name="article-status" value="draft">Draft<br>
+            <input type="radio" name="article-status" value="published">Published<br>
+          </fieldset>
+        </form>
         <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
                    1. Article title
                    2. Article body
