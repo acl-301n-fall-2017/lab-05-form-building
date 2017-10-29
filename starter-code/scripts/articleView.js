@@ -86,10 +86,8 @@ articleView.initNewArticlePage = function() {
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-  $(document).ready(function() {
-    $('#showPreview').on("click", showPreview);
-  })
-};
+  $('#newArticle').on("change", articleView.create);
+}
 
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
@@ -102,7 +100,8 @@ articleView.create = function() {
     rawContent.category = $('#category').val();
     rawContent.published = $('#published').val();
 
-  var JSONValue = JSON.stringify(rawContent);
+$('#articles').empty();
+  // var JSONValue = JSON.stringify(rawContent);
 
   // TODO: Instantiate an article based on what's in the form fields:
 
