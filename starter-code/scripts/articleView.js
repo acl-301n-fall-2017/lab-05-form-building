@@ -79,19 +79,30 @@ articleView.initNewArticlePage = function() {
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
+  $('#article-json').hide();
 
   $('#article-json').on('focus', function(){
     this.select();
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
+  $(document).ready(function() {
+    $('#showPreview').on("click", showPreview);
+  })
 };
 
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 
+  var rawContent = {};
+    rawContent.title = $('#title').val();
+    rawContent.author = $('#author').val();
+    rawContent.authorURL= $('#authorURL').val();
+    rawContent.category = $('#category').val();
+    rawContent.published = $('#published').val();
+
+  var JSONValue = JSON.stringify(rawContent);
 
   // TODO: Instantiate an article based on what's in the form fields:
 
