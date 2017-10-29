@@ -92,28 +92,37 @@ articleView.initNewArticlePage = function() {
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-  $('#new-article').on("change", function() {
+  $('#newArticle').on("change", function() {
     articleView.create();
+    console.log("form was changed");
   })
 };
 
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
-  var $articleHolder = $("#newArticle");
-  $articleHolder.empty();
+  var newRawData = {};
+  newRawData.title = $('#title').val();
+  newRawData.body = $('#body').val();
+  newRawData.author = $('#authorName').val();
+  newRawData.authorUrl = $('#authorUrl').val();
+  newRawData.category = $('#category').val();
+  newRawData.publishedOn = $('#published').prop("clicked") ? new Date(): "";
+  $('#articles').empty();
 
   // TODO: Instantiate an article based on what's in the form fields:
-
+  var newArticle = new Article(newRawData);
+  $('#preview').append(newArticle.toHtml());
+  console.log(newArticle);
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-
+  newArticle.toHtml;
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each();
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+  JSON.stringify(newArticle);
 };
 
 
