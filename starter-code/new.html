@@ -12,7 +12,7 @@
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
     <link rel="stylesheet" href="scripts/highlight/styles/default.css">
     <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
-      
+
   </head>
   <body>
     <header class="site-header clearfix">
@@ -42,6 +42,28 @@
                    4. Author's URL
                    5. Article category
                    6. Some way to know if this article is a draft or is published -->
+
+          <form name="new-article" id="newArticle">
+          <fieldset>
+            <label for="title">Title:</label>
+            <input name="title" id="title" type="text">
+           
+            <textarea name="body" id="body"></textarea>
+            
+            <label for="author">Author:</label>
+            <input name="author" id="author" type="text">
+
+            <label for="authorURL">Author URL:</label>
+            <input name="authorURL" id="authorURL" type="text">
+
+            <label for="category">Category:</label>
+            <input name="category" id="category" type="text">
+            
+            <input type="radio" name="status" value="draft"> Draft<br>
+            <input type="radio" name="status" value="published"> Published<br>
+            
+          </fieldset>   
+          </form>     
       </section>
 
       <section id="articles" class="tab-content">
