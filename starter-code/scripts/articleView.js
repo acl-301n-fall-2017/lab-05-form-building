@@ -84,13 +84,17 @@ articleView.initNewArticlePage = function() {
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
+  $('#article-export').hide();
+
 
   $('#article-json').on('focus', function(){
     this.select();
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
+  $('#new-article').on("change", function() {
+    articleView.create();
+  })
 };
 
 articleView.create = function() {
