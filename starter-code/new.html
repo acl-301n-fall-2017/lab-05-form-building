@@ -47,7 +47,7 @@
     <main class="clearfix">
 
       <section id="write" class="tab-content">
-        <h1>Create New Article</h1>
+        <h1>New Article</h1>
         <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
                    1. Article title
                    2. Article body
@@ -55,6 +55,23 @@
                    4. Author's URL
                    5. Article category
                    6. Some way to know if this article is a draft or is published -->
+        <form name="new-article" id="newArticle">
+          <fieldset>
+            <textarea name="content" id="content"></textarea><br>
+            <legend>New Article</legend>
+            <label for="title">Title:</label>
+            <input name="title" id="title" type="text">
+            <label for="author">Author:</label>
+            <input name="author" id="author" type="text">
+            <label for="authorURL">Author URL:</label>
+            <input name="authorURL" id="authorURL" type="text">
+            <label for="category">Category:</label>
+            <input name="category" id="category" type="text">
+            <label>Published Label</label><br>
+            <input type="checkbox" id="checkBox" value="published">Published<br>
+          </fieldset>
+          <div id="preview"></div>
+        </form>
       </section>
 
       <section id="articles" class="tab-content">
