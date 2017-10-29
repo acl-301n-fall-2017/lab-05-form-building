@@ -86,7 +86,7 @@ articleView.initNewArticlePage = function() {
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
     $('#newArticle').on('change', function() {
-
+      articleView.create();
       //update .articles
     })
 };
@@ -95,13 +95,13 @@ articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 
-    var newRawData = [];
-      this.title = $('title').val();
-      this.author = $('author').val();
-      this.authorUrl = $('authorUrl').val();
-      this.category = $('category').val();
-      this.body = $('body').val();
-      this.publishedOn =$('publishedOn').val();
+    var newRawData = {};
+      newRawData.title = $('#title').val();
+      newRawData.author = $('#author').val();
+      newRawData.authorUrl = $('#authorUrl').val();
+      newRawData.category = $('#category').val();
+      newRawData.body = $('#content').val();
+      newRawData.publishedOn =$('#publishedOn').val();
 
 
     $("#articles").empty();
@@ -110,15 +110,15 @@ articleView.create = function() {
     var newArticle = new Article(newRawData);
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-    $("#article-template").append(newArticle.toHtml());
+    $("#articles").append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each(function()) {
+  $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
-  };
+  });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+    $('#article-export').show().text(JSON.stringify(newArticle));
 };
 
 
