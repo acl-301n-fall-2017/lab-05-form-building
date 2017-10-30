@@ -75,35 +75,50 @@ articleView.setTeasers = function() {
 
 articleView.initNewArticlePage = function() {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-
+  articleView.handleMainNav();
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
+  $('#article-json').hide();
 
   $('#article-json').on('focus', function(){
     this.select();
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
-};
+  $('#newArticle').on("change", articleView.create);
+}
 
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 
+  var rawContent = {};
+    rawContent.title = $('#title').val();
+    rawContent.author = $('#author').val();
+    rawContent.authorURL= $('#authorURL').val();
+    rawContent.category = $('#category').val();
+    rawContent.body = marked($('#content').val());
+    rawContent.published = $('#published').prop("checked")?new Date():"";
+
+$('#articles').empty();
+  // var JSONValue = JSON.stringify(rawContent);
 
   // TODO: Instantiate an article based on what's in the form fields:
-
+  var newArticle = new Article(rawContent);
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  $('#articles').append(newArticle.toHtml());
 
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
 
+$("#article-json").text(JSON.stringify(newArticle)).show();
 };
 
 

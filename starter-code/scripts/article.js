@@ -33,3 +33,15 @@ rawData.forEach(function(articleObject) {
 articles.forEach(function(article){
   $('#articles').append(article.toHtml())
 });
+
+// function showPreview() {
+//   $('#preview').html(marked($('#content').val()));
+//   $('pre code').each(function(i, block) {
+//   hljs.highlightBlock(block);
+//  });
+// }
+//
+// $(document).ready(function() {
+//   $('').on("click", showPreview);
+//   hljs.initHighlightingOnLoad();
+// });
