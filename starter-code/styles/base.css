@@ -46,3 +46,31 @@ a:visited {
 /*FORM STYLES
 =======================================*/
 /*TODO: Add the CSS needed to style the form*/
+
+fieldset {
+  border: 0px;
+}
+
+form input {
+  width: 100%;
+  border: 0px;
+  outline: 0px;
+  border-bottom: 1px solid green;
+  margin: 0 20px 25px 0;
+}
+
+form textarea {
+  width: 100%;
+  margin: 25px 0;
+  border: 1px solid green;
+}
+
+form label {
+  display: flex; 
+  float: left;
+}
+
+.radioText {
+  padding-right: 30px;
+  margin-top: -5px;
+}
