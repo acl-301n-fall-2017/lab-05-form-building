@@ -94,28 +94,36 @@ articleView.initNewArticlePage = function() {
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
-  var newArticle = {};
-    $("#articles").empty();
+  var newArticleData = {};
+    newArticleData.title = $("#title").val();
+    newArticleData.body = $("#body").val();
+    newArticleData.articleAuthor = $("#articleAuthor").val();
+    newArticleData.authorUrl = $("#authorUrl").val();
+    newArticleData.articleCategory = $("#articleCategory").val();
+    newArticleData.publishedOn = $('#publishedOn').prop("checked")? getDate(): "";
+
+  $("#articles").empty();
 
   // TODO: Instantiate an article based on what's in the form fields:
-  newArticle.title = $("#title").val();
-  newArticle.body = $("#body").val();
-  newArticle.articleAuthor = $("#articleAuthor").val();
-  newArticle.authorUrl = $("#authorUrl").val();
-  newArticle.articleCategory = $("#articleCategory").val();
-  var JSONValue = JSON.stringify(newArticle);
+  var newArticle = new Article(newArticleData);
+
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
 
+    $('#articles').append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  $('pre code').each(function(i, block){
+    hljs.highlightBlock(block);
+    });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+    $('#article-json').show();
+    var jsonExport = JSON.stringify(newArticle);
+    $('#article-json').text(jsonExport);
 
-};
+  };
 
-
-articleView.initIndexPage = function() {
+  articleView.initIndexPage = function() {
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();

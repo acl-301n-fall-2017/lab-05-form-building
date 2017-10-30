@@ -52,15 +52,15 @@
           <fieldset>
             <label for="title">Title:</label>
             <input name="title" id="title" type="text">
-            <label for="body">Body:</label>
-            <input name="body" id="body" type="text">
             <label for="articleAuthor">Article Author:</label>
             <input name="article-author" id="articleAuthor" type="text">
             <label for="authorUrl">Author's URL</label>
             <input name="author-url" id="authorUrl" type="text">
             <label for="articleCategory">Article Category:</label>
-            <input name="article-category" id="articleCategory" type="text">
-            <label>Status</label>
+            <input name="article-category" id="articleCategory" type="text"><br>
+            <label for="body">Body:</label>
+            <textarea name="body" id="body"></textarea><br><br>
+            <label>Status:</label><br>
             <input type="radio" name="article-status" value="draft">Draft<br>
             <input type="radio" name="article-status" value="published">Published<br>
           </fieldset>
@@ -76,14 +76,14 @@
 
       <section id="articles" class="tab-content">
         <!-- NOTE: This is where we will display our article preview -->
-      </section>
+      </section><br>
 
       <section id="article-export">
         <div id='article-json' contenteditable="true"></div>
         <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
       </section>
 
-    </main>
+    </main><br><br>
     <footer>
       &copy; 2017 Code Fellows | Static Blog | Happy Ipsum!
     </footer>
