@@ -109,7 +109,7 @@ articleView.create = function() {
   newRawData.authorUrl = $('#authorUrl').val();
   newRawData.category = $('#category').val();
   newRawData.publishedOn = $('#published').prop("clicked") ? new Date(): "";
-  $('#article-preview').empty();
+  $('#article-export').empty();
 
   // TODO: Instantiate an article based on what's in the form fields:
   var newArticle = new Article(newRawData);
@@ -117,7 +117,7 @@ articleView.create = function() {
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
   console.log(newArticle.toHtml())
-  $('#article-preview').append(newArticle.toHtml());
+  $('#article-export').append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each(function(i, block) {
