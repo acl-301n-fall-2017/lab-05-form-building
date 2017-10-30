@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/modules.css">
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
     <link rel="stylesheet" href="scripts/highlight/styles/default.css">
+    <script type="text/javascript" src="scripts/highlight/highlight.pack.js"></script>
     <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
     <script id="article-template" type="text/x-handlebars-template">
@@ -59,22 +60,22 @@
 
           <form name="new-article" id="newArticle" action="">
           <fieldset>
-            <label for="title">Title:</label>
-            <input name="title" id="title" type="text">
+            <!-- <label for="title">Title:</label> -->
+            <input placeholder="Title" id="title" type="text">
 
-            <textarea name="body" id="body"></textarea>
+            <textarea placeholder="Body" id="body" rows="10"></textarea>
 
-            <label for="author">Author:</label>
-            <input name="author" id="authorName" type="text">
+            <!-- <label for="author">Author:</label> -->
+            <input placeholder="Author" id="authorName" type="text">
 
-            <label for="authorURL">Author URL:</label>
-            <input name="authorURL" id="authorURL" type="text">
+            <!-- <label for="authorURL">Author URL:</label> -->
+            <input placeholder="AuthorURL" id="authorURL" type="text">
 
-            <label for="category">Category:</label>
-            <input name="category" id="category" type="text">
+            <!-- <label for="category">Category:</label> -->
+            <input placeholder="Category" id="category" type="text">
 
-            <input type="radio" name="status" value="draft"> Draft<br>
-            <input type="radio" name="status" value="published"> Published<br>
+            <label><input type="radio" name="status" value="draft"><span class="radioText">Draft</span></label>
+            <label><input type="radio" name="status" value="published"><span class="radioText">Published</span></label>
 
           </fieldset>
           </form>
@@ -106,5 +107,6 @@
       //  Hint: Look in articleView.js for a function that does this.
       articleView.initNewArticlePage()
     </script>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
