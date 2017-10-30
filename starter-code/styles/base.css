@@ -46,3 +46,26 @@ a:visited {
 /*FORM STYLES
 =======================================*/
 /*TODO: Add the CSS needed to style the form*/
+
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+form textarea {
+  display: inline-block;
+  width: 100%;
+  height: 12em;
+  border-color: blue;
+}
+
+ form fieldset {
+   border-radius: 4px;
+ }
+
+form input[type="text"] {
+  font-size: 20px;
+  display:inline-block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid blue;
+}

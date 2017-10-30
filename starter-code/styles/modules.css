@@ -54,7 +54,12 @@
 
 /*TODO: Add CSS for the "article-export" portion of our new page*/
 
+#article-json {
+  color: gray;
+  font-size: 12px;
+  text-align: right;
 
+}
 @media only screen and (min-width: 640px) {
   .icon-menu {
     display: none;

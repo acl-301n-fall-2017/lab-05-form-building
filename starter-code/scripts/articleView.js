@@ -74,15 +74,18 @@ articleView.setTeasers = function() {
 };
 
 articleView.initNewArticlePage = function() {
+  this.handleMainNav();
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
-
+  $('#article-json').hide();
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
 
   $('#article-json').on('focus', function(){
     this.select();
   });
+
+  $("#newArticle").on("change", articleView.create);
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
 
@@ -91,23 +94,36 @@ articleView.initNewArticlePage = function() {
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
+  var newArticleData = {};
+    newArticleData.title = $("#title").val();
+    newArticleData.body = $("#body").val();
+    newArticleData.articleAuthor = $("#articleAuthor").val();
+    newArticleData.authorUrl = $("#authorUrl").val();
+    newArticleData.articleCategory = $("#articleCategory").val();
+    newArticleData.publishedOn = $('#publishedOn').prop("checked")? getDate(): "";
 
+  $("#articles").empty();
 
   // TODO: Instantiate an article based on what's in the form fields:
-
+  var newArticle = new Article(newArticleData);
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
 
+    $('#articles').append(newArticle.toHtml());
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  $('pre code').each(function(i, block){
+    hljs.highlightBlock(block);
+    });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+    $('#article-json').show();
+    var jsonExport = JSON.stringify(newArticle);
+    $('#article-json').text(jsonExport);
 
-};
+  };
 
-
-articleView.initIndexPage = function() {
+  articleView.initIndexPage = function() {
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
