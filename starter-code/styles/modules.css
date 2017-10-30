@@ -78,3 +78,9 @@
   }
 
 }
+
+#article-json {
+  width: 60%;
+  float: right;
+  color: grey;
+}

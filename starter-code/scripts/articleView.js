@@ -98,22 +98,27 @@ articleView.create = function() {
     rawContent.author = $('#author').val();
     rawContent.authorURL= $('#authorURL').val();
     rawContent.category = $('#category').val();
-    rawContent.published = $('#published').val();
+    rawContent.body = marked($('#content').val());
+    rawContent.published = $('#published').prop("checked")?new Date():"";
 
 $('#articles').empty();
   // var JSONValue = JSON.stringify(rawContent);
 
   // TODO: Instantiate an article based on what's in the form fields:
-
+  var newArticle = new Article(rawContent);
 
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  $('#articles').append(newArticle.toHtml());
 
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
 
+$("#article-json").text(JSON.stringify(newArticle)).show();
 };
 
 
