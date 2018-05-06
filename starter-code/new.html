@@ -50,16 +50,15 @@
           <form id="article-form">
             <fieldset>
               <legend>CONTRIBUTE ARTICLE</legend>
-              <label>Title:<input type="text"></label>
-              <label>Author:<input type="text"></label>
-              <label>Author URL:<input type="text"></label>
-              <label>Article Category:<input type="text"></label>
-              <label>Published?<input type="checkbox" value="published"></label>
-              <textarea type="text" placeholder="Main Content"></textarea>
-              <button value="Show Preview" id="show-preview"></button>
+              <label>Title:<input id="form-title" type="text"></label>
+              <label>Author:<input id="form-author" type="text"></label>
+              <label>Author URL:<input id="form-authorURL" type="text"></label>
+              <label>Article Category:<input id="form-category" type="text"></label>
+              <label>Published?<input id="form-published" type="checkbox" value="published"></label>
+              <textarea type="text" id="form-description" placeholder="Main Content"></textarea>
             </fieldset>
           </form>
-        <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
+        <!-- TODONE: Set up a form to accept user input for a new blog article. Remember that we need:
                    1. Article title
                    2. Article body
                    3. Article author
@@ -73,7 +72,11 @@
       </section>
 
       <section id="article-export">
-        <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+        <!-- TODOne: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+        <label id="export-field" for="article-json" class="pull-right">
+          <input type="text" readonly id="article-json">
+          When finalized, copy the above JSON, and paste into blogArticles.js
+        </label>
       </section>
 
     </main>
