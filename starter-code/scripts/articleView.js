@@ -74,36 +74,51 @@ articleView.setTeasers = function() {
 };
 
 articleView.initNewArticlePage = function() {
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  // TODOne: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  articleView.handleMainNav();
 
 
-  // TODO: The new articles we create will be copy/pasted into our source data file.
+  // TODOne: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
-
+  $('#export-field').hide();
   $('#article-json').on('focus', function(){
     this.select();
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
+  hljs.initHighlightingOnLoad();
+  $('#article-form').on('change', function () {
+    articleView.create();
+  })
 };
 
 articleView.create = function() {
-  // TODO: Set up a var to hold the new article we are creating.
+  // TODOne: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
+  var newArticle;
+  $('#articles').empty();
+  var published = $('#checkbox').prop('checked') ? JSON.stringify(new Date()) : "Draft";
+  // TODOne: Instantiate an article based on what's in the form fields:
+  newArticle = new Article ({
+    title: $('#form-title').val(),
+    author: $('#form-author').val(),
+    authorURL: $('#form-authorURL').val(),
+    category: $('#form-category').val(),
+    body: $('#form-description').val(),
+    publishedOn: published
+  });
 
-
-  // TODO: Instantiate an article based on what's in the form fields:
-
-
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
-
-
+  // TODOne: Use our interface to the Handblebars template to put this new article into the DOM:
+  $('#articles').append(newArticle.toHtml())
+console.log(newArticle);
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+  $('#export-field').show();
+  $('#article-json').val(JSON.stringify(newArticle));
 };
 
 
