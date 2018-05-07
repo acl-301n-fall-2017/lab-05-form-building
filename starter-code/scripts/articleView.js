@@ -75,34 +75,20 @@ articleView.setTeasers = function() {
 
 articleView.initNewArticlePage = function() {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-  // $('#previewButton').on('click', function (){
-  //     articleView.create();
-  // });
-
-  $('#new-blog').on('change', function(){
-    articleView.create();
-  });
   
-}
-
-
-
-
-
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
-
-    
-
-
 
   $('#article-json').on('focus', function(){
     this.select();
   });
 
-  
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-  $('#new-blog').on('change', articleView.create);
+  
+  $('#new-blog').on('change', function(){
+    articleView.create();
+  });
+}
 
 articleView.create = function() {
   // TODONE: Set up a var to hold the new article we are creating.
@@ -122,15 +108,14 @@ articleView.create = function() {
   // TODONE: Use our interface to the Handblebars template to put this new article into the DOM:
   $('#articles').append(article.toHtml());
 
-  // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('#previewButton').on("click", function() {
+  // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each:
+  
     var article = $('#articles').val();
     var markedArticle = marked(article);
     $('section#articles').html(markedArticle);
     $('section#articles pre code').each(function(i, block) {
       hljs.highlightBlock(block);
-    });
-
+  
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   
 });
