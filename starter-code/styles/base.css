@@ -45,4 +45,42 @@ a:visited {
 
 /*FORM STYLES
 =======================================*/
-/*TODO: Add the CSS needed to style the form*/
+/*TODONE: Add the CSS needed to style the form*/
+
+#new-blog {
+  margin: 0 auto;
+}
+
+#new-blog fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+#new-blog input:not(#published) {
+  width: 100%;
+  font-size: 1.5em;
+  border: 0;
+  border-bottom: 1px solid green;
+  padding: 20px 0 0 0;
+}
+
+#published {
+  margin-top: .75em ;
+  font-size: 1.5em;
+}
+
+textarea {
+  margin-top: 20px;
+  height: 12em;
+  width: 100%;
+}
+
+section h1 {
+  font-size: 1em;
+}
+
+fieldset {
+  border: 0;
+}
+
+
