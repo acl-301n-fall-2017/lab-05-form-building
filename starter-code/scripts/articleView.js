@@ -75,6 +75,8 @@ articleView.setTeasers = function() {
 
 articleView.initNewArticlePage = function() {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  $('.tab-content').show();
+  console.log('something');
 
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
@@ -85,6 +87,11 @@ articleView.initNewArticlePage = function() {
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
+  $("#articleBody").on('keydown', function(){
+    $('#articles').text($('#articleBody').val());
+    console.log('is it working');
+
+  });
 
 };
 
