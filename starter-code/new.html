@@ -11,6 +11,19 @@
     <link rel="stylesheet" href="styles/modules.css">
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
     <link>
+    <script id="article-template" type="text/x-handlebars-template">
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+        <header>
+          <h1>{{title}}</h1>
+          <div class="byline">
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
+            {{publishStatus}}
+          </div>
+        </header>
+        <section class="article-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
+      </article>
+    </script>
     <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
     </head>
   <body>
@@ -34,6 +47,15 @@
 
       <section id="write" class="tab-content">
         <h1>Create New Article</h1>
+        <form>
+          <label for='articleTitle'>Title:</label><input id='articleTitle' type='text' name='Article Title'><br>
+          <label for='articleBody'>Body:</label><input id='articleBody' type='text' name='Article Body'><br>
+          <label for='articleAuthor'>Author:</label><input id='articleAuthor' type='text' name='Article Author'><br>
+          <label for='authorUrl'>Author Url:</label><input id='authorUrl' type='text' name='Author Url'><br>
+          <label for='articleCategory'>Category</label><input id='articleCategory' type='text' name='Article Category'><br>
+          <input type='checkbox' value='Published'> Published <input type='checkbox' value='draft'> Draft <br>
+          <input type='submit' value='Publish'>
+        </form>
         <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
                    1. Article title
                    2. Article body
