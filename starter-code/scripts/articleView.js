@@ -90,20 +90,34 @@ articleView.initNewArticlePage = function() {
 
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
+  var $article = $('#articles');
   // Clear out the #articles element, so we can put in the updated preview
-
-
+  $article.empty();
   // TODO: Instantiate an article based on what's in the form fields:
 
 
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  // TODO-done??: Use our interface to the Handblebars template to put this new article into the DOM:
+  var template = Handlebars.compile($('#new-article-template').text());
+  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+  this.publishStatus = this.publishedOn ? `published ${this.daysAgo} days ago` : '(draft)';
 
+  // TODO-done?? (stretch goal): Pass the article body into the marked.js library to format our Markdown input!
+  var markedContent = marked($('#article-body').val());
+  $('#articles').html(markedContent);
 
-  // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
-
+  // TODO-done??: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
+  $('#articles pre code').each(function(i, block){
+    ljs.highlightBlock(block);
+  });
+  
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+  $('form').submit(function(event){
+    var $newArticleData = $(this).serializeArray();
+    var jsonObj = JSON.stringify($newArticleData);
+    
+    console.log($(this).serializeArray());
+    event.preventDefault();
+  })
 };
 
 
@@ -114,3 +128,9 @@ articleView.initIndexPage = function() {
   articleView.handleMainNav();
   articleView.setTeasers();
 };
+
+$(document).ready(function(){
+  $('#previewButton').on('click', articleView.create);
+  // hljs.initHighlightingOnLoad();
+}) 
+
