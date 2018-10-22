@@ -75,9 +75,10 @@ articleView.setTeasers = function() {
 
 articleView.initNewArticlePage = function() {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  hljs.initHighlightingOnLoad();
   $('#articles').empty();
   $('.tab-content').show();
-  console.log('something');
+  console.log('something'); 
 
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
@@ -88,7 +89,7 @@ articleView.initNewArticlePage = function() {
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-  $("#articleBody").on('keydown', function(){
+  $("#newDraft").on('keydown', function(){
     $('#articles').text($('#articleBody').val());
     articleView.create();
   });
@@ -125,9 +126,25 @@ articleView.create = function() {
 
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  
 
+  $('#article-json').each(function(i, block){
+    hljs.highlightBlock(block);  
+
+  });
+  
+  // $('#articles pre code').each(function(i, block) {
+  //   hljs.highlightBlock(block); editor. 
+  // });
+
+ 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+  var exportedArticle = JSON.stringify(articleDraft);
+  $('#article-json').text(exportedArticle).val();
+
+  // $('#articles').text($('#articleBody').val());
+
+  
 
 };
 
