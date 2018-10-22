@@ -74,26 +74,29 @@ articleView.setTeasers = function() {
 };
 
 articleView.initNewArticlePage = function() {
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-
+  // TODOdone??: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  $('.tab-content').show();
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
+  //I don't understand this one - tried googling different ways but nothing has come up that made sense to put here.
 
   $('#article-json').on('focus', function(){
     this.select();
   });
-
+  
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
+  //**I don't know what function to call on this event because my inital idea is to call the articleView.create but I can't call it before it's been defined ¯\_(ツ)_/¯ */
+  // $('#articles').on('change', whichFunction??);
 };
 
 articleView.create = function() {
-  // TODO: Set up a var to hold the new article we are creating.
+  // TODOdone: Set up a var to hold the new article we are creating.
   var $article = $('#articles');
   // Clear out the #articles element, so we can put in the updated preview
   $article.empty();
   // TODO: Instantiate an article based on what's in the form fields:
+  //**line 114 is making an object and supposed to be stringifying that into a json object - isn't this the same as making and instance of the form field values? I'm unsure about the different between these two */
 
 
   // TODO-done??: Use our interface to the Handblebars template to put this new article into the DOM:
@@ -110,16 +113,16 @@ articleView.create = function() {
     ljs.highlightBlock(block);
   });
   
-  // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+  // TODOhalfdone??: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   $('form').submit(function(event){
-    var $newArticleData = $(this).serializeArray();
-    var jsonObj = JSON.stringify($newArticleData);
-    
-    console.log($(this).serializeArray());
     event.preventDefault();
+    console.log($(this).serializeArray());
+    var jsonObj = JSON.stringify($newArticleData);
+    console.log(jsonObj);
   })
 };
 
+$('#previewButton').on('click', articleView.create);
 
 articleView.initIndexPage = function() {
   articleView.populateFilters();
@@ -129,8 +132,10 @@ articleView.initIndexPage = function() {
   articleView.setTeasers();
 };
 
-$(document).ready(function(){
-  $('#previewButton').on('click', articleView.create);
-  // hljs.initHighlightingOnLoad();
-}) 
+articleView.initNewArticlePage = function() {
+  articleView.initNewArticlePage();
+  articleView.create();
+  hljs.initHighlightingOnLoad();
+}
+
 
