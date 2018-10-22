@@ -74,22 +74,16 @@ articleView.setTeasers = function() {
 };
 
 articleView.initNewArticlePage = function() {
-  // : Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
   
+  // : Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
   $('.tab-content').show();
 
   $('#articles').hide();
 
-  // $('#new-article-template')
-
-  //rawDataObj
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
-
   $('#article-export').hide();
-
-
 
 
   $('#article-json').on('focus', function(){
@@ -118,23 +112,19 @@ articleView.create = function() {
   // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
   var newArticle = new Article(articleData);
   $('#articles').append(newArticle.toHtml());
-  // $('#articles').append('hadsjkhfkjhaskdjh');
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
 
-  // JSON.stringify(newArticle.html());
   var stringify = JSON.stringify(newArticle);
   $('#article-json').text(stringify);
 
-  // var variable = JSON.parse($('#article-json').text(stringify))
   $('#article-export').show();
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
 
 };
-
 
 articleView.initIndexPage = function() {
   articleView.populateFilters();
@@ -143,3 +133,4 @@ articleView.initIndexPage = function() {
   articleView.handleMainNav();
   articleView.setTeasers();
 };
+
