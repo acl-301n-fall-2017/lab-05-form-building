@@ -134,4 +134,4 @@ articleView.initIndexPage = function() {
   articleView.setTeasers();
 };
 
-//testing git
+//testing git.
