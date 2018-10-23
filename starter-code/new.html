@@ -5,12 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lab 5</title>
     <link rel="stylesheet" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" href="vendor/styles/default.css">
+    <link rel="stylesheet" href="vendor/styles/railscasts.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/default.min.css">
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
     <link>
+    <script id="article-template" type="text/x-handlebars-template">
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+        <header>
+          <h1>{{title}}</h1>
+          <div class="byline">
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
+            {{publishStatus}}
+          </div>
+        </header>
+        <section class="article-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
+      </article>
+    </script>
     <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
     </head>
   <body>
@@ -34,6 +51,17 @@
 
       <section id="write" class="tab-content">
         <h1>Create New Article</h1>
+        <form id="newDraft">
+          <fieldset>
+            <label for='articleTitle'>Title:</label><input id='articleTitle' type='text' name='Article Title'><br>
+            <label for='articleBody'>Body:</label><textarea id='articleBody' name='Article Body'></textarea><br>
+            <label for='articleAuthor'>Author:</label><input id='articleAuthor' type='text' name='Article Author'><br>
+            <label for='authorUrl'>Author Url:</label><input id='authorUrl' type='text' name='Author Url'><br>
+            <label for='articleCategory'>Category</label><input id='articleCategory' type='text' name='Article Category'><br>
+            <input type='checkbox' value='published'> Published <input type='checkbox' value='draft'> Draft <br>
+            <input type='submit' value='Publish'>
+        </fieldset>
+        </form>
         <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
                    1. Article title
                    2. Article body
@@ -48,7 +76,11 @@
       </section>
 
       <section id="article-export">
+        <textarea id='article-json'></textarea>
         <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+      </section>
+      <section id="afterArticle">
+
       </section>
 
     </main>
@@ -58,14 +90,21 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
+
+
     <!-- NOTE (stretch goal): Include script tags for 3rd party libraries to enable Markdown rendering and code syntax highlighting. If we are not using a CDN and instead choose to store these scripts with our project, make sure to put them into an appropriate location in the 'vendor' directory. Keep in mind that if we want these features to render properly on our main blog page (index.html) that we'll need to add those scripts over there, too. -->
-    <script src="/scripts/blogArticles.js"></script>
-    <script src="/scripts/article.js"></script>
-    <script src="/scripts/articleView.js"></script>
+    <script src="scripts/blogArticles.js"></script>
+    <script src="scripts/article.js"></script>
+    <script src="scripts/articleView.js"></script>
     <script>
+    articleView.initNewArticlePage()
       // TODO: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
       // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
       //  Hint: Look in articleView.js for a function that does this.
     </script>
   </body>
 </html>
+<!-- trying to push -->

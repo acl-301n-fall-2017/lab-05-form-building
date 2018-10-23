@@ -75,6 +75,10 @@ articleView.setTeasers = function() {
 
 articleView.initNewArticlePage = function() {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  hljs.initHighlightingOnLoad();
+  $('#articles').empty();
+  $('.tab-content').show();
+  console.log('something'); 
 
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
@@ -85,24 +89,62 @@ articleView.initNewArticlePage = function() {
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-
+  $("#newDraft").on('keydown', function(){
+    $('#articles').text($('#articleBody').val());
+    articleView.create();
+  });
 };
 
 articleView.create = function() {
+  var $articlePreview = $('#articles')
+  $articlePreview.empty();
   // TODO: Set up a var to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
 
 
   // TODO: Instantiate an article based on what's in the form fields:
+  var articleDraft = new Article({
+    title: $('#articleTitle').val(),
+    body: $('#articleBody').val(),
+    author: $('#articleAuthor').val(),
+    authorUrl: $('#authorUrl').val(),
+    category: $('#articleCategory').val(),
+  });
+
+  $('#articles').append(articleDraft.toHtml())
 
 
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  // console.log('The article draft so far is: ' , articleDraft);
+  //
+  //
+  //
+  // // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  // var templateFiller = Handlebars.compile($('#article-template').html());
+  // var filledTemplate = templateFiller( articleDraft );
+  // console.log(filledTemplate);
+  // return filledTemplate;
 
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-  $('pre code').each();
+  
 
+  $('#article-json').each(function(i, block){
+    hljs.highlightBlock(block);  
+
+  });
+  
+  // $('#articles pre code').each(function(i, block) {
+  //   hljs.highlightBlock(block); editor. 
+  // });
+
+ 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+  var exportedArticle = JSON.stringify(articleDraft);
+  $('#article-json').text(exportedArticle).val();
+
+  // $('#articles').text($('#articleBody').val());
+
+  
 
 };
 
