@@ -16,17 +16,17 @@ Article.prototype.toHtml = function() {
 
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
   this.publishStatus = this.publishedOn ? `published ${this.daysAgo} days ago` : '(draft)';
-
+  
   // TODO (stretch goal): Pass the article body into the marked.js library to format our Markdown input!
 
   return template(this);
 };
 
-rawData.sort(function(a,b) {
+articles.sort(function(a,b) {
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
 
-rawData.forEach(function(articleObject) {
+articles.forEach(function(articleObject) {
   articles.push(new Article(articleObject));
 })
 
