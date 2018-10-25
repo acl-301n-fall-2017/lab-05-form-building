@@ -79,15 +79,14 @@ articleView.initNewArticlePage = function() {
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
-  //I don't understand this one - tried googling different ways but nothing has come up that made sense to put here.
-
+  $('#json-export-container').hide();
   $('#article-json').on('focus', function(){
     this.select();
   });
   
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-  //**I don't know what function to call on this event because my inital idea is to call the articleView.create but I can't call it before it's been defined ¯\_(ツ)_/¯ */
-  // $('#articles').on('change', whichFunction??);
+  $('#article-form').on('keyup', articleView.create);
+  hljs.initHighlightingOnLoad();
 };
 
 articleView.create = function() {
@@ -96,30 +95,29 @@ articleView.create = function() {
   // Clear out the #articles element, so we can put in the updated preview
   $article.empty();
   // TODO: Instantiate an article based on what's in the form fields:
-  //**line 114 is making an object and supposed to be stringifying that into a json object - isn't this the same as making and instance of the form field values? I'm unsure about the different between these two */
-
-
+  var newArticle = new Article({
+    title: $('#article-title').val(),
+    category: $('#article-category').val(),
+    author: $('#article-author').val(),
+    authorUrl: $('#src-url').val(),
+    body: $('#article-body').val()  
+  })
+  $('#articles').append(newArticle.toHtml());
   // TODO-done??: Use our interface to the Handblebars template to put this new article into the DOM:
-  var template = Handlebars.compile($('#new-article-template').text());
-  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
-  this.publishStatus = this.publishedOn ? `published ${this.daysAgo} days ago` : '(draft)';
+
 
   // TODO-done?? (stretch goal): Pass the article body into the marked.js library to format our Markdown input!
-  var markedContent = marked($('#article-body').val());
-  $('#articles').html(markedContent);
+  var markedContent = marked($('#articles .article-body').html());
+  $('#articles .article-body').html(markedContent);
 
   // TODO-done??: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('#articles pre code').each(function(i, block){
-    ljs.highlightBlock(block);
+    hljs.highlightBlock(block);
   });
   
   // TODOhalfdone??: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-  $('form').submit(function(event){
-    event.preventDefault();
-    console.log($(this).serializeArray());
-    var jsonObj = JSON.stringify($newArticleData);
-    console.log(jsonObj);
-  })
+  $('#json-export-container').show();
+  $('#json-export-container').val(JSON.stringify(newArticle));
 };
 
 $('#previewButton').on('click', articleView.create);
@@ -132,10 +130,5 @@ articleView.initIndexPage = function() {
   articleView.setTeasers();
 };
 
-articleView.initNewArticlePage = function() {
-  articleView.initNewArticlePage();
-  articleView.create();
-  hljs.initHighlightingOnLoad();
-}
 
 

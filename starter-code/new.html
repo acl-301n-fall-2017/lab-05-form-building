@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lab 5</title>
     <link rel="stylesheet" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" href="vendor/styles/railscasts.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
@@ -12,7 +13,7 @@
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
     <link rel="stylesheet"
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/default.min.css">
-    <script id="new-article-template" type="text/x-handlebars-template">
+    <script id="article-template" type="text/x-handlebars-template">
       <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
         <header>
           <h1>{{title}}</h1>
@@ -48,15 +49,13 @@
 
       <section id="write" class="tab-content">
         <h1>Create New Article</h1>
-        <form>
+        <form id="article-form">
           <label for="article-title">Title</label><input type="text" id="article-title" name="title"><br>
-          <label for="article-body">Body</label><textarea type="text" id="article-body" name="body">Write article here...</textarea><br>
+          <label for="article-body">Body</label><textarea type="text" id="article-body" name="body" placeholder="Write article here..."></textarea><br>
           <label for="article-author">Author</label><input type="text" id="article-author" name="author"><br>
           <label for="src-url">Author Url</label><input type="text" id="src-url" name="URL"><br>
           <label for="article-category">Category</label><input type="text" id="article-category" name="category"><br>
           <input type="checkbox" id="article-draft" name="draft" value="draft"><label for="article-draft">This is a draft</label><br>
-          <input id="previewButton" type="button" value="Show Preview"><br>
-          <input type="submit" value="Save Article">
         </form>
         <!-- TODOdone: Set up a form to accept user input for a new blog article. Remember that we need:
                    1. Article title
@@ -73,9 +72,9 @@
       </section>
 
       <section id="article-export">
-        <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? 
-        **I do not understand what needs to go here? A simple div? -->
-        <div id="json-export-article"></div>
+          <textarea id="json-export-container" name="json-export"></textarea>
+
+        <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
       </section>
 
     </main>
